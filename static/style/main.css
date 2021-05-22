@@ -1,0 +1,40 @@
+.common-main-container {
+    margin: 0;
+    padding: 0;
+}
+
+.doors-container {
+    margin-bottom: 75px;
+}
+
+.doors-description {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 100px 0;
+    background: #DEAE83;
+    height: 500px;
+}
+
+.doors-information {
+    display: flex;
+    flex-direction: column;
+    margin: 55px 0 0 110px;
+}
+
+.doors-information__title {
+    font-size: 36px;
+    color: #FFFDFD;
+    font-weight: bold;
+}
+
+.doors-information__text {
+    margin-top: 15px;
+    line-height: 21px;
+}
+
+.doors-description__image {
+    position: relative;
+    width: 500px;
+    height: 570px;
+    bottom: 35px;
+}
