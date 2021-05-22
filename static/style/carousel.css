@@ -1,5 +1,6 @@
 .carousel {
     position: relative;
+    overflow: hidden;
     margin: auto;
     width: 100%;
     height: 100vh;
@@ -47,7 +48,7 @@
     text-align: center;
     position: absolute;
     width: 100%;
-    top: calc(88vh);
+    top: calc(100vh - (60px + 50px));
 }
 
 .carousel-dot {

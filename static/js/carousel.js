@@ -1,6 +1,6 @@
-const leftSlide = document.getElementById('carousel-left-picture-id');
-const rightSlide = document.getElementById('carousel-right-picture-id');
-const centerSlide = document.getElementById('carousel-center-picture-id');
+const slideLeft = document.getElementById('carousel-left-picture-id');
+const slideRight = document.getElementById('carousel-right-picture-id');
+const slideCenter = document.getElementById('carousel-center-picture-id');
 const buttonLeft = document.getElementById('carousel-left-button-id');
 const buttonRight = document.getElementById('carousel-right-button-id');
 const dotLeft = document.getElementById('carousel-dot-left-id');
@@ -10,7 +10,7 @@ const LEFT_SIDE_MOTION = 'LEFT_SIDE_MOTION';
 const RIGHT_SIDE_MOTION = 'RIGHT_SIDE_MOTION';
 
 const ANIMATION_QUEUE = [];
-let isMotionAnimationMoved = false;
+let isMotionAnimationContinious = false;
 
 const LEFT_POSITION = '-100%';
 const RIGHT_POSITION = '100%';
@@ -27,9 +27,9 @@ const moveSlideOn = (element, side) => {
 }
 
 const setCarouselTransition = (transition) => {
-    leftSlide.style.transition = transition;
-    rightSlide.style.transition = transition;
-    centerSlide.style.transition = transition;
+    slideLeft.style.transition = transition;
+    slideRight.style.transition = transition;
+    slideCenter.style.transition = transition;
 }
 
 const enableAnimation = () => {
@@ -41,22 +41,22 @@ const disableAnimation = () => {
 }
 
 const SLIDE_ELEMENT_BY = {
-    [LEFT_SIDE_MOTION]: leftSlide,
-    [RIGHT_SIDE_MOTION]: rightSlide,
+    [LEFT_SIDE_MOTION]: slideLeft,
+    [RIGHT_SIDE_MOTION]: slideRight,
 }
 
 const swapSoursPicture = (sideMotions) => {
     const element = SLIDE_ELEMENT_BY[sideMotions];
-    const temp = centerSlide.src;
-    centerSlide.src = element.src;
-    leftSlide.src = temp;
-    rightSlide.src = temp;
+    const temp = slideCenter.src;
+    slideCenter.src = element.src;
+    slideLeft.src = temp;
+    slideRight.src = temp;
 }
 
 const restoreDefaultPosition = () => {
-    moveSlideOn(leftSlide, LEFT_POSITION);
-    moveSlideOn(centerSlide, CENTER_POSITION);
-    moveSlideOn(rightSlide, RIGHT_POSITION);
+    moveSlideOn(slideLeft, LEFT_POSITION);
+    moveSlideOn(slideCenter, CENTER_POSITION);
+    moveSlideOn(slideRight, RIGHT_POSITION);
 }
 
 const checkQueue = () => {
@@ -64,18 +64,18 @@ const checkQueue = () => {
         const moveSlide = ANIMATION_QUEUE.shift();
         moveSlide();
     } else {
-        isMotionAnimationMoved = false;
+        isMotionAnimationContinious = false;
     }
 }
 
 const moveSlideOnLeft = () => {
-    moveSlideOn(leftSlide, CENTER_POSITION)
-    moveSlideOn(centerSlide, RIGHT_POSITION)
+    moveSlideOn(slideLeft, CENTER_POSITION)
+    moveSlideOn(slideCenter, RIGHT_POSITION)
 }
 
 const moveSlideOnRight = () => {
-    moveSlideOn(rightSlide, CENTER_POSITION)
-    moveSlideOn(centerSlide, LEFT_POSITION)
+    moveSlideOn(slideRight, CENTER_POSITION)
+    moveSlideOn(slideCenter, LEFT_POSITION)
 }
 
 const MOVE_SLIDE_BY = {
@@ -106,10 +106,10 @@ const moveSlide = (sideMotions) => () => {
 }
 
 const moveOn = (sideMotion) => {
-    if (isMotionAnimationMoved) {
+    if (isMotionAnimationContinious) {
         ANIMATION_QUEUE.push(moveSlide(sideMotion));
     } else {
-        isMotionAnimationMoved = true;
+        isMotionAnimationContinious = true;
         moveSlide(sideMotion)();
     }
 }
