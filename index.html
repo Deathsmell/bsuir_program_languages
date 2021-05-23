@@ -7,24 +7,29 @@
     <link type="text/css" rel="stylesheet" href="./static/style/header.css">
     <link type="text/css" rel="stylesheet" href="./static/style/main.css">
     <link type="text/css" rel="stylesheet" href="./static/style/carousel.css">
+    <link type="text/css" rel="stylesheet" href="./static/style/review.css">
 </head>
 <body>
 <header class="main-header">
     <div class="header-space"></div>
-    <a href="" class="header-navigation-refers">
+    <a href="#entrance-container-id"
+       class="header-navigation-refers">
         Входные двери
     </a>
-    <a href="" class="header-navigation-refers">
+    <a href="#interior-container-id"
+       class="header-navigation-refers">
         Межкомнатные двери
     </a>
-    <a href="" class="header-navigation-refers">
+    <a href="#balcony-container-id"
+       class="header-navigation-refers">
         Балконные двери
     </a>
     <a href="" class="header-navigation-refers">
         Отзывы
     </a>
     <button id="call-button-id"
-            class="header-call-button">
+            class="header-call-button"
+            type="button">
         Заказать звонок
     </button>
 </header>
@@ -60,7 +65,8 @@
                   class="carousel-dot"></span>
         </div>
     </div>
-    <div class="entrance-container doors-container">
+    <div id="entrance-container-id"
+         class="entrance-container doors-container">
         <div class="entrance-description doors-description">
             <div class="entrance-information doors-information">
                 <span class="entrance-title doors-information__title">
@@ -105,7 +111,8 @@
                  class="entrance-image doors-description__image"/>
         </div>
     </div>
-    <div class="interior-container doors-container">
+    <div id="interior-container-id"
+         class="interior-container doors-container">
         <div class="interior-description doors-description">
             <img src="./static/images/interior-doors-picture.jpeg"
                  alt="Interior doors picture"
@@ -139,7 +146,8 @@
             </div>
         </div>
     </div>
-    <div class="balcony-container doors-container">
+    <div id="balcony-container-id"
+         class="balcony-container doors-container">
         <div class="balcony-description doors-description">
             <div class="balcony-information doors-information">
                 <span class="balcony-title doors-information__title">
@@ -181,9 +189,17 @@
                  class="balcony-image doors-description__image"/>
         </div>
     </div>
+    <div class="reviews-container-main">
+        <h1 class="review-main-name">
+            Отзывы
+        </h1>
+        <div id="reviews-container-id"
+             class="reviews-container"></div>
+    </div>
 </div>
 
 <footer></footer>
 </body>
 <script src="static/js/carousel.js"></script>
+<script src="static/js/review.js"></script>
 </html>
