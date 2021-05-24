@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Doors</title>
     <link type="text/css" rel="stylesheet" href="./static/style/index.css">
+    <link type="text/css" rel="stylesheet" href="./static/style/carousel.css">
     <link type="text/css" rel="stylesheet" href="./static/style/header.css">
     <link type="text/css" rel="stylesheet" href="./static/style/main.css">
-    <link type="text/css" rel="stylesheet" href="./static/style/carousel.css">
     <link type="text/css" rel="stylesheet" href="./static/style/review.css">
 </head>
 <body>
@@ -36,34 +36,11 @@
 
 <div class="common-main-container">
     <div id="carousel-container-id"
-         class="carousel">
-        <img src="./static/images/main-carousel-picture-2.jpeg"
-             class="carousel-picture left-slide"
-             id="carousel-left-picture-id"
-             alt="Main carousel picture with image doors">
+         class="main-carousel">
         <img src="./static/images/main-carousel-picture-1.jpeg"
-             class="carousel-picture right-slide"
-             id="carousel-right-picture-id"
              alt="Main carousel picture with image doors"/>
         <img src="./static/images/main-carousel-picture-2.jpeg"
-             class="carousel-picture center-slide"
-             id="carousel-center-picture-id"
              alt="Main carousel picture with image doors">
-        <a id="carousel-left-button-id"
-           class="carousel-button carousel-button-left">
-            &#10094;
-        </a>
-        <a id="carousel-right-button-id"
-           class="carousel-button carousel-button-right">
-            &#10095;
-        </a>
-        <div id="carousel-dots-container-id"
-             class="carousel-dots-container">
-            <span id="carousel-dot-left-id"
-                  class="carousel-dot active-dot"></span>
-            <span id="carousel-dot-right-id"
-                  class="carousel-dot"></span>
-        </div>
     </div>
     <div id="entrance-container-id"
          class="entrance-container doors-container">
@@ -200,6 +177,14 @@
 
 <footer></footer>
 </body>
-<script src="static/js/carousel.js"></script>
+<script src="static/js/carousel.js">
+</script>
 <script src="static/js/review.js"></script>
+<script>
+    const mainCarousel = document.getElementById('carousel-container-id');
+    new Carousel(mainCarousel, {
+        infinite: true,
+        showDots: true,
+    })
+</script>
 </html>

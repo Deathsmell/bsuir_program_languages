@@ -1,0 +1,76 @@
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.carousel-slide {
+    position: absolute;
+    display: inline-block;
+    white-space: normal;
+}
+
+.left-carousel-slide {
+    transform: translateX(-100%);
+}
+
+.right-carousel-slide {
+    transform: translateX(100%);
+}
+
+.carousel-button {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transition: 600ms ease;
+    user-select: none;
+}
+
+.carousel-button-left {
+    left: 10px;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-right: 25px solid gray;
+}
+
+.carousel-button-right {
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 25px solid gray;
+}
+
+.carousel-dots-container {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+}
+
+.carousel-dots-container-hide {
+    display: none;
+}
+
+.carousel-dot {
+    display: inline-block;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #FFFDFD;
+    border-radius: 50%;
+    transition: background-color 600ms ease;
+}
+
+.carousel-active-dot {
+    background-color: #464547;
+}
+
+
+.hide-element {
+    display: none;
+}

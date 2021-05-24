@@ -31,15 +31,19 @@ const reviews = [
 const defaultClassPrefix = 'review-'
 const CONTAINER_CLASS = `${defaultClassPrefix}container`;
 const IMAGE_CLASS = `${defaultClassPrefix}photo`;
+const IMAGE_CONTAINER_CLASS = `${defaultClassPrefix}photo-container`;
 const NAME_CLASS = `${defaultClassPrefix}name`;
 const DESCRIPTION_CLASS = `${defaultClassPrefix}text`;
 
 const createImageElement = (src) => {
+    let div = document.createElement('div');
     const img = document.createElement('img');
     img.src = src;
     img.alt = 'Reviews photo';
-    img.classList.add(IMAGE_CLASS)
-    return img;
+    img.classList.add(IMAGE_CLASS);
+    div.classList.add(IMAGE_CONTAINER_CLASS);
+    div.appendChild(img);
+    return div;
 }
 
 const createNameElement = (name) => {
@@ -80,7 +84,10 @@ const createReviewComponent = (data) => {
     return container;
 }
 
-
 reviews.forEach((review) => {
     reviewsContainer.appendChild(createReviewComponent(review));
 })
+
+
+
+

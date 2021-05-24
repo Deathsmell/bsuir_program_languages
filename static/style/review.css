@@ -6,9 +6,10 @@
 }
 
 .reviews-container {
-    display: flex;
+    display: inline-flex;
     justify-content: space-around;
-
+    position: relative;
+    width: 100%;
 }
 
 .review-main-name {
@@ -20,27 +21,31 @@
 }
 
 .review-container {
-    width: 190px;
+    width: 220px;
 }
 
 .review-photo {
-    margin-left: 44px;
-    height: 102px;
     width: 102px;
+    height: 102px;
     border-radius: 50%;
+}
+
+.review-photo-container {
+    width: 100%;
+    text-align: center;
 }
 
 .review-name {
     font-size: 16px;
     text-align: center;
     display: inline-block;
-    width: 190px;
+    width: 100%;
     font-weight: bold;
     line-height: 112%;
 }
 
 .review-text {
-    width: 190px;
+    width: 100%;
     text-align: left;
     vertical-align: top;
     height: 220px;
