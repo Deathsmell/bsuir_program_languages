@@ -1,0 +1,114 @@
+.call-container-main {
+    height: 580px;
+    margin: 100px 100px;
+    position: relative;
+    white-space: nowrap;
+    background-color: #FFFDFD;
+}
+
+.map-image {
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+}
+
+.call-form-container {
+    width: 50%;
+    display: inline-block;
+    white-space: normal;
+    height: 100%;
+    position: relative;
+}
+
+.call-form {
+    position: absolute;
+    width: 345px;
+    left: 110px;
+    top: 55px;
+}
+
+.call-form * {
+    width: 345px;
+}
+
+.call-input {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 35px;
+    padding: 8px;
+    outline: none;
+}
+
+.call-input:focus {
+    border: 2px solid #1A7BEE;
+}
+
+.input-invalid {
+    border: 2px solid red;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.call-input::-webkit-outer-spin-button,
+.call-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.call-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.phone-number-container {
+    display: inline-grid;
+    grid-template-columns: 45px 45px 1fr;
+}
+
+.phone-number-container > label {
+    width: auto;
+    display: inline;
+}
+
+.phone-number-container .default-start-prefix-number {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.default-start-prefix-number {
+
+}
+
+.prefix-number-input {
+    display: inline;
+    width: 38px;
+    margin: 0 5px;
+}
+
+.number-phone-input {
+    display: inline;
+}
+
+.time-input .call-input {
+    margin-bottom: 0;
+}
+
+.time-input .time-input-description {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.submit-call-form-button {
+    cursor: pointer;
+    height: 40px;
+    width: 200px;
+    background: #2A1D17;
+    color: #FFFDFD;
+    border: 0;
+    border-radius: 2px;
+}

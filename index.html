@@ -8,6 +8,7 @@
     <link type="text/css" rel="stylesheet" href="./static/style/header.css">
     <link type="text/css" rel="stylesheet" href="./static/style/main.css">
     <link type="text/css" rel="stylesheet" href="./static/style/review.css">
+    <link type="text/css" rel="stylesheet" href="./static/style/call-form.css">
 </head>
 <body>
 <header class="main-header">
@@ -173,18 +174,92 @@
         <div id="reviews-container-id"
              class="reviews-container"></div>
     </div>
+    <div class="call-container-main">
+        <img src="./static/images/map.png"
+             class="map-image"
+             alt="Main map"/>
+        <div class="call-form-container">
+            <form class="call-form">
+                <h1>Заказать звонок</h1>
+                <label for="second-name-input-id">
+                    <input id="second-name-input-id"
+                           placeholder="Фамилия"
+                           class="call-input"
+                           type="text">
+                </label>
+
+                <label for="first-name-input-id">
+                    <input id="first-name-input-id"
+                           placeholder="Имя"
+                           class="call-input"
+                           type="text">
+                </label>
+
+
+                <label for="third-name-input-id">
+                    <input id="third-name-input-id"
+                           class="call-input"
+                           placeholder="Отчество"
+                           type="text">
+                </label>
+
+                <label for="third-name-input-id">
+                    <input id="email-input-id"
+                           class="call-input"
+                           placeholder="Электронная почта"
+                           type="email">
+                </label>
+
+                <div class="phone-number-container">
+                    <span class="default-start-prefix-number">+375</span>
+                    <label for="phone-prefix-number-input-id">
+                        <input id="phone-prefix-number-input-id"
+                               class="call-input prefix-number-input"
+                               type="text"
+                               placeholder="29"
+                               pattern="\d*"
+                               maxlength="2">
+                    </label>
+                    <label for="phone-number-input-id">
+                        <input id="phone-number-input-id"
+                               class="call-input number-phone-input"
+                               type="text">
+                    </label>
+                </div>
+
+                <label class="time-input"
+                       for="time-input-id">
+                    <input id="time-input-id"
+                           class="call-input"
+                           placeholder="Укажите время (пример 20:00)"
+                           type="text">
+                    <small class="time-input-description">
+                        (В данной строке необходимо указать удобное для вас время звонка)
+                    </small>
+                </label>
+
+                <button type="button"
+                        id="main-call-button-id"
+                        class="submit-call-form-button">
+                    Отправить заявку
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <footer></footer>
 </body>
-<script src="static/js/carousel.js">
-</script>
+<script src="static/js/carousel.js"></script>
 <script src="static/js/review.js"></script>
+<script src="static/js/call-form.js"></script>
 <script>
     const mainCarousel = document.getElementById('carousel-container-id');
     new Carousel(mainCarousel, {
         infinite: true,
         showDots: true,
     })
+
+    new ContactForm();
 </script>
 </html>

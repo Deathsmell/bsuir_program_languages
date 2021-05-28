@@ -193,7 +193,7 @@ class Carousel {
     currentSliderIndex;
 
     constructor(element, options) {
-        this.carouselElement = element;
+        this.carouselElement = element instanceof HTMLElement ? element : document.getElementById(element);
         this.options = { ...this.options, ...options };
         if (this.carouselElement.children.length >= 2) {
             this.initialSliders();
