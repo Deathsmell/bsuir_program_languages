@@ -2,7 +2,8 @@
     height: 580px;
     font-size: 14px;
     background-color: #FEFEFF;
-    margin: 0 100px 0;
+    margin: 0 100px;
+    padding: 0 165px;
 }
 
 .reviews-container {
@@ -21,13 +22,14 @@
 }
 
 .review-container {
-    width: 220px;
+    width: 190px;
 }
 
 .review-photo {
     width: 102px;
     height: 102px;
     border-radius: 50%;
+    border: 1px solid #56700F;
 }
 
 .review-photo-container {

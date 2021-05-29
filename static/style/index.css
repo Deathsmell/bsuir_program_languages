@@ -3,3 +3,13 @@ body {
     padding: 0;
     background: darkgrey;
 }
+
+.btn {
+    cursor: pointer;
+    height: 40px;
+    width: 200px;
+    background: #2A1D17;
+    color: #FFFDFD;
+    border: 0;
+    border-radius: 2px;
+}
