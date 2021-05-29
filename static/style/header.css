@@ -3,7 +3,7 @@
     background: #464547;
     height: 70px;
     text-align: center;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -15,12 +15,8 @@
 }
 
 .header-call-button {
-    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    line-height: 40px;
     margin:  0 100px 0 20px;
-    height: 40px;
-    width: 200px;
-    background: #2A1D17;
-    color: #FFFDFD;
-    border: 0;
-    border-radius: 2px;
 }

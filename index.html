@@ -5,10 +5,12 @@
     <title>Doors</title>
     <link type="text/css" rel="stylesheet" href="./static/style/index.css">
     <link type="text/css" rel="stylesheet" href="./static/style/carousel.css">
+    <link type="text/css" rel="stylesheet" href="./static/style/base-carousel.css">
     <link type="text/css" rel="stylesheet" href="./static/style/header.css">
     <link type="text/css" rel="stylesheet" href="./static/style/main.css">
     <link type="text/css" rel="stylesheet" href="./static/style/review.css">
     <link type="text/css" rel="stylesheet" href="./static/style/call-form.css">
+    <link type="text/css" rel="stylesheet" href="./static/style/footer.css">
 </head>
 <body>
 <header class="main-header">
@@ -25,14 +27,15 @@
        class="header-navigation-refers">
         Балконные двери
     </a>
-    <a href="" class="header-navigation-refers">
+    <a href="#reviews-container-main-id" class="header-navigation-refers">
         Отзывы
     </a>
-    <button id="call-button-id"
-            class="header-call-button"
-            type="button">
+    <a id="call-button-id"
+       href="#call-container-id"
+       class="header-call-button btn"
+       type="button">
         Заказать звонок
-    </button>
+    </a>
 </header>
 
 <div class="common-main-container">
@@ -167,17 +170,21 @@
                  class="balcony-image doors-description__image"/>
         </div>
     </div>
-    <div class="reviews-container-main">
+    <div class="reviews-container-main"
+         id="reviews-container-main-id">
         <h1 class="review-main-name">
             Отзывы
         </h1>
         <div id="reviews-container-id"
              class="reviews-container"></div>
     </div>
-    <div class="call-container-main">
-        <img src="./static/images/map.png"
-             class="map-image"
-             alt="Main map"/>
+    <div class="call-container-main"
+         id="call-container-id">
+        <div class="map-container">
+            <img src="./static/images/map.png"
+                 class="map-image"
+                 alt="Main map"/>
+        </div>
         <div class="call-form-container">
             <form class="call-form">
                 <h1>Заказать звонок</h1>
@@ -240,7 +247,7 @@
 
                 <button type="button"
                         id="main-call-button-id"
-                        class="submit-call-form-button">
+                        class="submit-call-form-button btn">
                     Отправить заявку
                 </button>
             </form>
@@ -248,7 +255,74 @@
     </div>
 </div>
 
-<footer></footer>
+<footer class="main-footer">
+    <div class="main-office-information-container">
+        <div class="information-container office-information-container">
+            <div class="office-information">
+                Наш официальный адрес:
+                <br/>
+                г. Минск, ул. Ленина, 4
+            </div>
+            <div class="office-information">
+                УНП
+                <br/>
+                00987465398548
+            </div>
+            <div class="office-information">
+                БИК
+                <br/>
+                83478B79DF78
+            </div>
+        </div>
+        <div class="information-container contact-information-container">
+            <div class="contact-information">
+                Приемная
+                <br/>
+                7 902 345
+            </div>
+            <div class="contact-information">
+                Отдел продаж
+                <br/>
+                7 902 346
+            </div>
+            <div class="contact-information">
+                Юридический отдел
+                <br/>
+                7 902 347
+            </div>
+        </div>
+        <div class="information-container social-information-container">
+            <div class="social-information">
+                Официальный сайт:
+                <br/>
+                <a class="footer-link"
+                   href="">
+                    dveri.by
+                </a>
+            </div>
+            <div class="social-information">
+                Мы в соцсетях:
+                <br/>
+                <div class="social-images-container">
+                    <div class="social-image"></div>
+                    <div class="social-image"></div>
+                    <div class="social-image"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="partner-information-container">
+        Партнеры:
+        <br/>
+        <div class="partners-logo-container">
+            <div class="partner-logo"></div>
+            <div class="partner-logo"></div>
+            <div class="partner-logo partner-large-logo"></div>
+            <div class="partner-logo"></div>
+            <div class="partner-logo"></div>
+        </div>
+    </div>
+</footer>
 </body>
 <script src="static/js/carousel.js"></script>
 <script src="static/js/review.js"></script>

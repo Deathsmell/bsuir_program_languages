@@ -6,10 +6,17 @@
     background-color: #FFFDFD;
 }
 
-.map-image {
+.map-container {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
     width: 50%;
     height: 100%;
-    display: inline-block;
+}
+
+.map-image {
+    position: relative;
+    height: 100%;
 }
 
 .call-form-container {
@@ -22,13 +29,9 @@
 
 .call-form {
     position: absolute;
-    width: 345px;
-    left: 110px;
+    left: 25%;
+    right: 25%;
     top: 55px;
-}
-
-.call-form * {
-    width: 345px;
 }
 
 .call-input {
@@ -63,6 +66,7 @@
 .phone-number-container {
     display: inline-grid;
     grid-template-columns: 45px 45px 1fr;
+    width: 100%;
 }
 
 .phone-number-container > label {
@@ -101,14 +105,4 @@
 .time-input .time-input-description {
     display: block;
     margin-bottom: 20px;
-}
-
-.submit-call-form-button {
-    cursor: pointer;
-    height: 40px;
-    width: 200px;
-    background: #2A1D17;
-    color: #FFFDFD;
-    border: 0;
-    border-radius: 2px;
 }
