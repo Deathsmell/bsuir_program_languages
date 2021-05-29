@@ -1,0 +1,43 @@
+@media screen and (max-width: 1024px) and (min-width: 770px) {
+    .container {
+        min-width: 770px;
+    }
+
+    .circles-container {
+        display: none;
+    }
+
+    .doors-container {
+        margin-bottom: 20px;
+    }
+
+    .doors-description {
+        margin: 0;
+        height: 380px;
+    }
+
+    .doors-description__image {
+        width: 330px;
+        height: 325px;
+        top: 30px;
+        right: 25px;
+        bottom: 30px;
+    }
+
+    .revert .doors-description__image {
+        left: 80px;
+    }
+
+    .doors-information {
+        font-size: 13px;
+        left: 82px;
+        right: 410px;
+        top: 30px;
+    }
+
+    .revert .doors-information {
+        top: 30px;
+        right: 33px;
+        left: 460px;
+    }
+}

@@ -1,0 +1,14 @@
+@media screen and (max-width: 770px) {
+    .main-header {
+        flex-direction: column-reverse;
+        height: auto;
+        padding: 20px;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .header-call-button {
+        width: 100%;
+        margin: 0;
+    }
+}

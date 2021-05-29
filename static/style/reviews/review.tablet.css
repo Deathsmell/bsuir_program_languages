@@ -1,0 +1,18 @@
+@media screen and (max-width: 1024px) and (min-width: 770px) {
+    .reviews-container-main {
+        font-size: 13px;
+        margin: 0;
+        padding: 0 114px;
+        height: 940px;
+    }
+
+    .review-main-name {
+        margin: 30px 0 15px;
+    }
+
+    .reviews-container {
+        grid-template-columns: repeat(2, 190px);
+        grid-template-rows: repeat(2, 420px);
+        row-gap: 15px;
+    }
+}

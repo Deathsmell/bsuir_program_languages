@@ -1,8 +1,8 @@
 .main-footer {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, auto) 1fr;
+    column-gap: 90px;
     background-color: #464547;
-    height: 180px;
     padding: 45px 100px;
     color: #FFFDFD;
     font-size: 14px;
@@ -10,13 +10,11 @@
 
 .information-container {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
 }
 
-.main-office-information-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 90px;
+.office-information {
+    white-space: pre-wrap;
 }
 
 .partners-logo-container {
@@ -42,8 +40,8 @@
 
 .social-image {
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     background-color: green;
     margin-left: 1px;
     border-radius: 5px;

@@ -24,9 +24,18 @@
     top: 55px;
 }
 
+.revert .doors-information {
+    left: 730px;
+    right: 210px;
+}
+
 .doors-image-container {
     position: absolute;
     right: 0;
+}
+
+.revert .doors-image-container {
+    left: 0;
 }
 
 .doors-information__title {
@@ -60,7 +69,7 @@
     left: 110px;
 }
 
-.circles-container-revert {
+.revert .circles-container {
     left: 730px;
 }
 
@@ -83,14 +92,4 @@
     line-height: 21px;
     text-align: center;
     vertical-align: middle;
-}
-
-
-.interior-image-container {
-    left: 0;
-}
-
-.interior-information {
-    left: 730px;
-    right: 210px;
 }

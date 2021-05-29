@@ -1,0 +1,15 @@
+@media screen and (max-width: 1024px) and (min-width: 770px) {
+    .main-footer {
+        font-size: 10px;
+        height: auto;
+        padding: 30px 80px;
+        column-gap: 45px;
+    }
+
+    .partners-logo-container {
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 15px;
+        row-gap: 15px;
+        margin-top: 5px;
+    }
+}

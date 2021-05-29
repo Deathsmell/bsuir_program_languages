@@ -7,7 +7,9 @@
 }
 
 .reviews-container {
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: repeat(4, 190px);
+    column-gap: 50px;
     justify-content: space-around;
     position: relative;
     width: 100%;
@@ -17,12 +19,11 @@
     display: inline-block;
     width: 100%;
     text-align: center;
-    margin-top: 55px;
-    margin-bottom: 30px;
+    margin: 55px 0 30px;
 }
 
 .review-container {
-    width: 190px;
+    width: 100%;
 }
 
 .review-photo {

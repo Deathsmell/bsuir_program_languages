@@ -1,0 +1,42 @@
+@media screen and (max-width: 770px) {
+    .container {
+        min-width: 375px;
+        max-width: 770px;
+    }
+
+    .circles-container {
+        display: none;
+    }
+
+    .doors-container {
+        margin-bottom: 5px;
+    }
+
+    .doors-description {
+        margin: 0;
+        position: initial;
+        flex-direction: column-reverse;
+        height: auto;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .doors-information {
+        position: initial;
+        font-size: 13px;
+        width: 100%;
+        line-height: 21px;
+    }
+
+    .doors-image-container {
+        position: initial;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .doors-description__image {
+        position: initial;
+        min-width: 100%;
+        height: auto;
+    }
+}

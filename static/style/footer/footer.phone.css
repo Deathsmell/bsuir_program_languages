@@ -1,0 +1,50 @@
+@media screen and (max-width: 770px) {
+    .main-footer {
+        padding: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr auto auto;
+        column-gap: 0;
+        row-gap: 10px;
+        grid-template-areas:
+                'social partner'
+                'information information'
+                'contact contact';
+    }
+
+    .main-footer .social-information-container {
+        grid-area: social;
+    }
+
+    .main-footer .partners-logo-container {
+        grid-area: partner;
+    }
+
+    .main-footer .office-information-container {
+        grid-area: information;
+        row-gap: 1px;
+        grid-template-rows: repeat(3, 14px);
+    }
+
+    .office-information-container .office-information {
+        white-space: nowrap;
+    }
+
+    .main-footer .contact-information-container {
+        grid-area: contact;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+    }
+
+    .partners-logo-container {
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 15px;
+        row-gap: 15px;
+        margin-top: 5px;
+    }
+
+    .social-image {
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+    }
+}

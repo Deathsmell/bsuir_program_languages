@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Doors</title>
     <link type="text/css" rel="stylesheet" href="./static/style/index.css">
-    <link type="text/css" rel="stylesheet" href="./static/style/carousel.css">
     <link type="text/css" rel="stylesheet" href="./static/style/base-carousel.css">
-    <link type="text/css" rel="stylesheet" href="./static/style/header.css">
-    <link type="text/css" rel="stylesheet" href="./static/style/main.css">
-    <link type="text/css" rel="stylesheet" href="./static/style/review.css">
-    <link type="text/css" rel="stylesheet" href="./static/style/call-form.css">
-    <link type="text/css" rel="stylesheet" href="./static/style/footer.css">
+    <link type="text/css" rel="stylesheet" href="static/style/carousel/index.css">
+    <link type="text/css" rel="stylesheet" href="static/style/header/index.css">
+    <link type="text/css" rel="stylesheet" href="static/style/main/index.css">
+    <link type="text/css" rel="stylesheet" href="static/style/reviews/index.css">
+    <link type="text/css" rel="stylesheet" href="static/style/call-form/index.css">
+    <link type="text/css" rel="stylesheet" href="static/style/footer/index.css">
 </head>
 <body>
 <header class="main-header">
@@ -38,7 +38,7 @@
     </a>
 </header>
 
-<div class="common-main-container">
+<div class="common-main-container container">
     <div id="carousel-container-id"
          class="main-carousel">
         <img src="./static/images/main-carousel-picture-1.jpeg"
@@ -90,7 +90,7 @@
         </div>
     </div>
     <div id="interior-container-id"
-         class="interior-container doors-container">
+         class="interior-container doors-container revert">
         <div class="interior-description doors-description">
             <div class="interior-information doors-information">
                 <div class="interior-title doors-information__title">
@@ -105,7 +105,7 @@
                     межкомнатные двери.
                 </span>
             </div>
-            <div class="circles-container circles-container-revert">
+            <div class="circles-container">
                 <div class="circle-info">
                     <span class="circle-info__text">
                         От
@@ -255,21 +255,17 @@
 </div>
 
 <footer class="main-footer">
-    <div class="main-office-information-container">
         <div class="information-container office-information-container">
             <div class="office-information">
                 Наш официальный адрес:
-                <br/>
                 г. Минск, ул. Ленина, 4
             </div>
             <div class="office-information">
                 УНП
-                <br/>
                 00987465398548
             </div>
             <div class="office-information">
                 БИК
-                <br/>
                 83478B79DF78
             </div>
         </div>
@@ -309,7 +305,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <div class="partner-information-container">
         Партнеры:
         <br/>
@@ -327,12 +322,22 @@
 <script src="static/js/review.js"></script>
 <script src="static/js/call-form.js"></script>
 <script>
-    const mainCarousel = document.getElementById('carousel-container-id');
-    new Carousel(mainCarousel, {
+    new ContactForm();
+
+    const mainCarousel = new Carousel('carousel-container-id', {
         infinite: true,
         showDots: true,
-    })
+    });
 
-    new ContactForm();
+    const reviewsCarousel = new Carousel('reviews-container-id', {
+        infinite: false,
+        showDots: false,
+        disable: true,
+    });
+
+    const checkViewport = () => window.innerWidth <= 770 && reviewsCarousel.enable()
+
+    checkViewport()
+    window.addEventListener('resize', checkViewport)
 </script>
 </html>

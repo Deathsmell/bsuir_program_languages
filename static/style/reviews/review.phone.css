@@ -1,0 +1,25 @@
+@media screen and (max-width: 770px) {
+    .reviews-container-main {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        margin: 0;
+        line-height: 21px;
+        height: 420px;
+    }
+
+    .reviews-container {
+        width: 190px;
+        height: 100%;
+    }
+
+    .review-container {
+        width: 190px;
+        margin-bottom: 20px;
+    }
+
+    .review-main-name {
+        display: none;
+    }
+}
