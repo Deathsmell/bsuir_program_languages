@@ -255,56 +255,56 @@
 </div>
 
 <footer class="main-footer">
-        <div class="information-container office-information-container">
-            <div class="office-information">
-                Наш официальный адрес:
-                г. Минск, ул. Ленина, 4
-            </div>
-            <div class="office-information">
-                УНП
-                00987465398548
-            </div>
-            <div class="office-information">
-                БИК
-                83478B79DF78
+    <div class="information-container office-information-container">
+        <div class="office-information">
+            Наш официальный адрес:
+            г. Минск, ул. Ленина, 4
+        </div>
+        <div class="office-information">
+            УНП
+            00987465398548
+        </div>
+        <div class="office-information">
+            БИК
+            83478B79DF78
+        </div>
+    </div>
+    <div class="information-container contact-information-container">
+        <div class="contact-information">
+            Приемная
+            <br/>
+            7 902 345
+        </div>
+        <div class="contact-information">
+            Отдел продаж
+            <br/>
+            7 902 346
+        </div>
+        <div class="contact-information">
+            Юридический отдел
+            <br/>
+            7 902 347
+        </div>
+    </div>
+    <div class="information-container social-information-container">
+        <div class="social-information">
+            Официальный сайт:
+            <br/>
+            <a class="footer-link"
+               href="">
+                dveri.by
+            </a>
+        </div>
+        <div class="social-information">
+            Мы в соцсетях:
+            <br/>
+            <div class="social-images-container">
+                <div class="social-image"></div>
+                <div class="social-image"></div>
+                <div class="social-image"></div>
             </div>
         </div>
-        <div class="information-container contact-information-container">
-            <div class="contact-information">
-                Приемная
-                <br/>
-                7 902 345
-            </div>
-            <div class="contact-information">
-                Отдел продаж
-                <br/>
-                7 902 346
-            </div>
-            <div class="contact-information">
-                Юридический отдел
-                <br/>
-                7 902 347
-            </div>
-        </div>
-        <div class="information-container social-information-container">
-            <div class="social-information">
-                Официальный сайт:
-                <br/>
-                <a class="footer-link"
-                   href="">
-                    dveri.by
-                </a>
-            </div>
-            <div class="social-information">
-                Мы в соцсетях:
-                <br/>
-                <div class="social-images-container">
-                    <div class="social-image"></div>
-                    <div class="social-image"></div>
-                    <div class="social-image"></div>
-                </div>
-            </div>
-        </div>
+    </div>
     <div class="partner-information-container">
         Партнеры:
         <br/>
@@ -332,10 +332,11 @@
     const reviewsCarousel = new Carousel('reviews-container-id', {
         infinite: false,
         showDots: false,
-        disable: true,
     });
 
-    const checkViewport = () => window.innerWidth <= 770 && reviewsCarousel.enable()
+    const checkViewport = () => window.innerWidth <= 770
+            ? reviewsCarousel.enable()
+            : reviewsCarousel.disable();
 
     checkViewport()
     window.addEventListener('resize', checkViewport)

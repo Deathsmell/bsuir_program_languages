@@ -1,8 +1,5 @@
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 770px) and (min-width: 0){
     .reviews-container-main {
-        width: 100%;
-        display: flex;
-        justify-content: center;
         padding: 20px;
         margin: 0;
         line-height: 21px;
@@ -10,13 +7,23 @@
     }
 
     .reviews-container {
-        width: 190px;
+        width: auto;
         height: 100%;
     }
 
     .review-container {
-        width: 190px;
         margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .review-photo-container {
+        width: 190px;
+    }
+
+    .review-name {
+        width: 190px;
     }
 
     .review-main-name {

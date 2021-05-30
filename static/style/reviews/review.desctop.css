@@ -34,7 +34,7 @@
 }
 
 .review-photo-container {
-    width: 100%;
+    width: 190px;
     text-align: center;
 }
 
@@ -42,13 +42,13 @@
     font-size: 16px;
     text-align: center;
     display: inline-block;
-    width: 100%;
+    width: 190px;
     font-weight: bold;
     line-height: 112%;
 }
 
 .review-text {
-    width: 100%;
+    width: 190px;
     text-align: left;
     vertical-align: top;
     height: 220px;

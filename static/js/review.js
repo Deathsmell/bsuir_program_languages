@@ -2,6 +2,7 @@ const defaultPathToImage = './static/images/';
 const getDefaultImageName = (sex, number) => `review-${sex}-${number}.jpeg`;
 const FEMALE = 'female';
 const MALE = 'male';
+const DEFAULT_WIDTH = '190px'
 
 const reviewsContainer = document.getElementById('reviews-container-id')
 
@@ -58,6 +59,7 @@ const createHorizontalLineElement = (top, bottom) => {
     hr.style.marginBottom = bottom ? `${bottom}px` : null;
     hr.style.marginTop = top ? `${top}px` : null;
     hr.style.height = '0';
+    hr.style.width = DEFAULT_WIDTH;
     return hr;
 }
 

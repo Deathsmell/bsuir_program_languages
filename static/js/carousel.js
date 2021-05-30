@@ -196,80 +196,80 @@ class Carousel {
         this.carouselElement = element instanceof HTMLElement ? element : document.getElementById(element);
         this.options = { ...this.options, ...options };
         if (this.carouselElement.children.length >= 2) {
-            this.initialSliders();
-            this.initialDots();
-            this.initialArrows();
+            this._initialSliders();
+            this._initialDots();
+            this._initialArrows();
             if (this.options.disable) {
                 this.disable();
             } else {
                 this.enable();
             }
-            this.checkArrowsVisibility();
+            this._checkArrowsVisibility();
             if (!this.options.showDots) {
                 this.dotsElement.hideContainer();
             }
         }
     }
 
-    adjustSlidersClasses() {
-        this.hideAnotherSliders();
-        this.currentSlider.makeCenter();
-        this.nextSlider.makeRight();
+    _adjustSlidersClasses() {
+        this._currentSlider.makeCenter();
+        this._nextSlider.makeRight();
         if (this.previousSliderIndex !== this.currentSliderIndex) {
-            this.previousSlider.makeLeft();
+            this._previousSlider.makeLeft();
         }
+        this._hideAnotherSliders();
     }
 
-    initialSliders() {
+    _initialSliders() {
         for (let child of this.carouselElement.children) {
             this.sliders.push(new Slider(child));
         }
         this.currentSliderIndex = FIRST_ELEMENT_INDEX;
-        this.adjustSlidersClasses();
+        this._adjustSlidersClasses();
     }
 
-    initialArrows() {
-        this.buttonLeft = this.createArrowWith(BUTTON_LEFT_CLASS);
-        this.buttonRight = this.createArrowWith(BUTTON_RIGHT_CLASS);
+    _initialArrows() {
+        this.buttonLeft = this._createArrowWith(BUTTON_LEFT_CLASS);
+        this.buttonRight = this._createArrowWith(BUTTON_RIGHT_CLASS);
 
-        this.buttonRight.addEventListener('click', this.moveSlidersOn(RIGHT_SIDE_MOTION));
-        this.buttonLeft.addEventListener('click', this.moveSlidersOn(LEFT_SIDE_MOTION));
+        this.buttonRight.addEventListener('click', this._moveSlidersOn(RIGHT_SIDE_MOTION));
+        this.buttonLeft.addEventListener('click', this._moveSlidersOn(LEFT_SIDE_MOTION));
 
         this.carouselElement.appendChild(this.buttonLeft);
         this.carouselElement.appendChild(this.buttonRight);
     }
 
-    checkArrowsVisibility() {
+    _checkArrowsVisibility() {
         if (!this.options.infinite) {
-            this.buttonLeft.style.display = this.isFirstSlider ? 'none' : null;
-            this.buttonRight.style.display = this.isLastSlider ? 'none' : null;
+            this.buttonLeft.style.display = this._isFirstSlider ? 'none' : null;
+            this.buttonRight.style.display = this._isLastSlider ? 'none' : null;
         }
     }
 
-    createArrowWith(elementClass) {
+    _createArrowWith(elementClass) {
         const a = document.createElement('a');
         a.classList.add(BUTTON_CLASS, elementClass);
         return a;
     }
 
-    initialDots() {
+    _initialDots() {
         this.dotsElement = new Dots(this.carouselElement);
         this.dotsElement.changeActiveDot(this.currentSliderIndex);
         this.dotsElement.addChangeDotListener(async ({ index }) => {
             this.currentSliderIndex = index;
-            this.disableAnimation();
-            this.adjustSlidersClasses();
-            await this.changeAsyncAnimationState(this.enableAnimation);
+            this._disableAnimation();
+            this._adjustSlidersClasses();
+            await this._changeAsyncAnimationState(this._enableAnimation);
         })
     }
 
-    moveSlidersOn(sideMotion) {
+    _moveSlidersOn(sideMotion) {
         return () => {
             if (this.isMotionAnimationContinuous) {
-                this.ANIMATION_QUEUE.push(this.moveSlide(sideMotion));
+                this.ANIMATION_QUEUE.push(this._moveSlide(sideMotion));
             } else {
                 this.isMotionAnimationContinuous = true;
-                this.moveSlide(sideMotion)();
+                this._moveSlide(sideMotion)();
             }
         }
     }
@@ -296,94 +296,97 @@ class Carousel {
             : this.currentSliderIndex - 1;
     }
 
-    get nextSlider() {
+    get _nextSlider() {
         return this.sliders[this.nextSliderIndex];
     }
 
-    get previousSlider() {
+    get _previousSlider() {
         return this.sliders[this.previousSliderIndex];
     }
 
-    get currentSlider() {
+    get _currentSlider() {
         return this.sliders[this.currentSliderIndex];
     }
 
-    get anotherSliders() {
-        return [...this.leftSliders, ...this.rightSliders];
+    get _anotherSliders() {
+        return [...this._leftSliders, ...this._rightSliders];
     }
 
-    get activeSliders() {
+    get _activeSliders() {
         return this.sliders.slice(
-            this.isFirstSlider ? FIRST_ELEMENT_INDEX : this.previousSliderIndex,
-            this.isLastSlider ? this.sliders.length - 1 : this.nextSliderIndex + 1,
+            this._isFirstSlider ? FIRST_ELEMENT_INDEX : this.previousSliderIndex,
+            this._isLastSlider ? this.sliders.length - 1 : this.nextSliderIndex + 1,
         );
     }
 
-    get rightSliders() {
-        return this.sliders.slice(this.nextSliderIndex, this.sliders.length);
+    get _rightSliders() {
+        return this.sliders
+            .slice(this.nextSliderIndex, this.sliders.length)
+            .filter((slider) => !slider.isCenter);
     }
 
-    get leftSliders() {
-        return this.sliders.slice(FIRST_ELEMENT_INDEX, this.previousSliderIndex);
+    get _leftSliders() {
+        return this.sliders.slice(FIRST_ELEMENT_INDEX, this.previousSliderIndex)
+            .filter((slider) => !slider.isCenter);
     }
 
-    get isFirstSlider() {
+    get _isFirstSlider() {
         return this.currentSliderIndex === FIRST_ELEMENT_INDEX;
     }
 
-    get isLastSlider() {
+    get _isLastSlider() {
         return this.currentSliderIndex === this.sliders.length - 1;
     }
 
-    enableAnimation() {
+    _enableAnimation() {
         this.sliders.forEach((slider) => slider.enableAnimation());
     }
 
-    disableAnimation() {
+    _disableAnimation() {
         this.sliders.forEach((slider) => slider.disableAnimation());
     }
 
-    incrementIndex() {
-        this.currentSliderIndex = this.isLastSlider ? FIRST_ELEMENT_INDEX : this.currentSliderIndex + 1;
+    _incrementIndex() {
+        this.currentSliderIndex = this._isLastSlider ? FIRST_ELEMENT_INDEX : this.currentSliderIndex + 1;
     }
 
-    decrementIndex() {
-        this.currentSliderIndex = this.isFirstSlider ? this.sliders.length - 1 : this.currentSliderIndex - 1;
+    _decrementIndex() {
+        this.currentSliderIndex = this._isFirstSlider ? this.sliders.length - 1 : this.currentSliderIndex - 1;
     }
 
-    moveSlideBy(sideMotions) {
+    _moveSlideBy(sideMotions) {
         if (sideMotions === RIGHT_SIDE_MOTION) {
-            this.incrementIndex();
-            this.previousSlider.makeLeft();
+            this._incrementIndex();
+            this._previousSlider.makeLeft();
         } else if (sideMotions === LEFT_SIDE_MOTION) {
-            this.decrementIndex();
-            this.nextSlider.makeRight();
+            this._decrementIndex();
+            this._nextSlider.makeRight();
         }
-        this.currentSlider.makeCenter();
+        this._currentSlider.makeCenter();
     }
 
-    hideAnotherSliders() {
-        this.leftSliders.forEach((slider) => slider.makeLeft());
-        this.rightSliders.forEach((slider) => slider.makeRight());
+    _hideAnotherSliders() {
+        this._leftSliders.forEach((slider) => slider.makeLeft());
+        this._rightSliders.forEach((slider) => slider.makeRight());
     }
 
-    waitEndAnimation() {
+    _waitEndAnimation() {
         return new Promise((resolve) => setTimeout(resolve, DEFAULT_ANIMATION_DURATION))
     }
 
-    isCanMoveTo(sideMotions) {
+    _isCanMoveTo(sideMotions) {
         if (this.options.infinite) {
             return true;
         }
         if (sideMotions === RIGHT_SIDE_MOTION) {
-            return !this.isLastSlider;
+            return !this._isLastSlider;
         }
         if (sideMotions === LEFT_SIDE_MOTION) {
-            return !this.isFirstSlider;
+            return !this._isFirstSlider;
         }
     }
 
-    changeAsyncAnimationState(animationHandler) {
+    _changeAsyncAnimationState(animationHandler) {
         return new Promise((resolve) => {
             setTimeout(() => {
                 animationHandler.call(this)
@@ -393,42 +396,42 @@ class Carousel {
     }
 
     async fixSlidersPositionBy(sideMotions) {
-        this.disableAnimation();
+        this._disableAnimation();
         if (sideMotions === RIGHT_SIDE_MOTION) {
-            this.nextSlider.makeRight();
+            this._nextSlider.makeRight();
         }
         if (sideMotions === LEFT_SIDE_MOTION) {
-            this.previousSlider.makeLeft();
+            this._previousSlider.makeLeft();
         }
-        await this.changeAsyncAnimationState(this.enableAnimation);
+        await this._changeAsyncAnimationState(this._enableAnimation);
     }
 
-    moveSlide(sideMotions) {
+    _moveSlide(sideMotions) {
         return async () => {
-            if (!this.isCanMoveTo(sideMotions)) {
+            if (!this._isCanMoveTo(sideMotions)) {
                 throw new Error(`Can not move in ${sideMotions}`);
             }
-            await this.enableAnimation();
+            await this._enableAnimation();
             if (this.options.infinite) {
                 await this.fixSlidersPositionBy(sideMotions);
             }
-            this.moveSlideBy(sideMotions);
+            this._moveSlideBy(sideMotions);
             if (this.options.showDots) {
                 this.dotsElement.changeActiveDot(this.currentSliderIndex);
             }
-            this.checkArrowsVisibility();
-            await this.waitEndAnimation(sideMotions);
-            this.checkQueue();
+            this._checkArrowsVisibility();
+            await this._waitEndAnimation(sideMotions);
+            this._checkQueue();
         }
     }
 
-    checkQueue() {
+    async _checkQueue() {
         if (this.ANIMATION_QUEUE.length) {
             const moveSlide = this.ANIMATION_QUEUE.shift();
             try {
-                moveSlide();
+               await moveSlide();
             } catch (e) {
-                this.checkQueue()
+                this._checkQueue()
             }
         } else {
             this.isMotionAnimationContinuous = false;
@@ -441,15 +444,22 @@ class Carousel {
         this.buttonRight.style.display = 'none';
         this.dotsElement.hideContainer();
         this.carouselElement.classList.remove(DEFAULT_CAROUSEL_CONTAINER_CLASS);
-        this.sliders.forEach((slider) => slider.removeClasses(DEFAULT_SLIDE_CLASS));
+        this.sliders.forEach((slider) => {
+            slider.removeClasses(DEFAULT_SLIDE_CLASS, RIGHT_SLIDE_CLASS, LEFT_SLIDE_CLASS);
+            slider.resetPositionStatus();
+        });
     }
 
     enable() {
         this.options.disable = false;
         this.buttonLeft.style.display = null;
         this.buttonRight.style.display = null;
-        this.dotsElement.showContainer();
+        if (this.options.showDots) {
+            this.dotsElement.showContainer();
+        }
         this.carouselElement.classList.add(DEFAULT_CAROUSEL_CONTAINER_CLASS);
         this.sliders.forEach((slider) => slider.addClasses(DEFAULT_SLIDE_CLASS));
+        this._adjustSlidersClasses();
+        this._checkArrowsVisibility();
     }
 }
