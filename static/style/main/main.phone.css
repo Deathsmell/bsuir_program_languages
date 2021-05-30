@@ -8,6 +8,10 @@
         display: none;
     }
 
+    .main-circles-container {
+        display: none;
+    }
+
     .doors-container {
         margin-bottom: 5px;
     }

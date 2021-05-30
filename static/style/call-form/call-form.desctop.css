@@ -30,6 +30,10 @@
     flex-direction: column;
 }
 
+.call-form h1 {
+    white-space: nowrap;
+}
+
 .call-input {
     box-sizing: border-box;
     width: 100%;

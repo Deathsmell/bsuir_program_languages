@@ -7,6 +7,18 @@
         display: none;
     }
 
+    .main-circles-container {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        background: #DEAE83;
+        margin: 0 0 20px 0;
+    }
+
+    .circle-info {
+        margin-left: 40px;
+    }
+
     .doors-container {
         margin-bottom: 20px;
     }
