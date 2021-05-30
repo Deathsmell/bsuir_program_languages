@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+</head>
+<body>
+<div id="result-container-id">
+    <h1>Result</h1>
+</div>
+<button id="button-id" style="width: 150px; height: 75px; font-size: 20px">
+    Show tree
+</button>
+<div>
+    <div>
+        <h1>Element 1</h1>
+    </div>
+    <div>
+        <div>
+            <h1>Element 2</h1>
+            <h1>Element 3</h1>
+        </div>
+        <div>
+            <h1>Element 4</h1>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    const resultContainerId = 'result-container-id';
+    const treeId = 'tree-id';
+    const buttonId = 'button-id';
+
+    const resultContainer = document.getElementById(resultContainerId)
+    const button = document.getElementById(buttonId)
+
+
+    const SHOW = 'SHOW'
+    const HIDE = 'HIDE'
+
+    const changeResultContainerVisibility = (state) => {
+        if (state === SHOW) {
+            resultContainer.style.display = 'block'
+        }
+        if (state === HIDE) {
+            resultContainer.style.display = 'none'
+        }
+    }
+
+    changeResultContainerVisibility(HIDE)
+
+    const generateTree = elem => {
+        let child = elem.firstElementChild;
+        const ul = document.createElement('ul')
+        while (child) {
+            const li = document.createElement('li');
+            li.textContent = child.tagName;
+            const list = generateTree(child);
+            li.appendChild(list);
+            ul.appendChild(li);
+            child = child.nextElementSibling;
+        }
+        return ul;
+    }
+
+    const removeOldTreeElement = () => {
+        const oldTreeElement = document.getElementById(treeId);
+        if (oldTreeElement) {
+            oldTreeElement.remove();
+        }
+    }
+
+    const renderResultTree = () => {
+        const tree = generateTree(document.body)
+        tree.id = treeId;
+        resultContainer.appendChild(tree)
+    }
+
+    button.addEventListener('click', () => {
+        removeOldTreeElement()
+        changeResultContainerVisibility(SHOW)
+        renderResultTree()
+    })
+</script>
+</html>

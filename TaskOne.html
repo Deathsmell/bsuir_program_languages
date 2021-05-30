@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2</title>
+</head>
+<style>
+    * {
+        font-size: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    th {
+        width: 200px;
+    }
+
+    .input-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 20px;
+    }
+
+    .input-container__form {
+        border: 2px solid black;
+        padding: 0 20px 40px;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    .price-input::-webkit-outer-spin-button,
+    .price-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    .price-input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .input-container__title {
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .data-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .data-container__table {
+        margin: 50px;
+        width: 50%;
+        text-align: center;
+    }
+</style>
+<body>
+<div class="input-container">
+    <div class="input-container__form">
+        <h2 class="input-container__title">
+            Form
+        </h2>
+        <div class="input-container__controls">
+            <input id="name-input-id"
+                   placeholder="name"/>
+            <input id="price-input-id"
+                   class="price-input"
+                   type="number"
+                   placeholder="price"/>
+            <button id="add-button-id">
+                Add
+            </button>
+            <button id="calculate-button-id">
+                Calculate
+            </button>
+        </div>
+    </div>
+</div>
+<div class="data-container">
+    <table class="data-container__table">
+        <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+        </tr>
+        </thead>
+
+        <tbody id="list-table-body-id">
+
+        </tbody>
+
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                Total items price:
+                <span id="total-price-id">0</span>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+</body>
+<script>
+    const addButton = document.getElementById('add-button-id')
+    const calculateButton = document.getElementById('calculate-button-id')
+    const nameInput = document.getElementById('name-input-id')
+    const priceInput = document.getElementById('price-input-id')
+    const itemsTableBody = document.getElementById('list-table-body-id')
+    const totalPriceElement = document.getElementById('total-price-id')
+
+    const DISABLE = true
+    const ENABLE = false
+
+    const items = []
+
+    const createTableCell = (value) => {
+        const td = document.createElement('td')
+        td.append(value)
+        return td
+    }
+
+    const addChangeBackgroundColorEvent = (element, color = 'red') => {
+        element.addEventListener("mouseenter", event => {
+            event.target.style.backgroundColor = color
+        })
+        element.addEventListener('mouseleave', event => {
+            event.target.style.backgroundColor = null
+        })
+    }
+
+    const isEmpty = (value) => !value || value === ''
+
+    const disableAddButtonIfInputsEmptyHandler = () =>
+        addButton.disabled = isEmpty(nameInput.value) || isEmpty(priceInput.value)
+
+    const disableCalculateButton = () => calculateButton.disabled = DISABLE
+
+    const disableAddButton = () => addButton.disabled = DISABLE
+
+    const enableCalculateButton = () => calculateButton.disabled = ENABLE
+
+    const createPriceCell = price => {
+        const priceCell = createTableCell(price);
+        addChangeBackgroundColorEvent(priceCell)
+        return priceCell
+    }
+
+    const createTableRow = (item) => {
+        const tr = document.createElement('tr')
+        tr.appendChild(createTableCell(item.name))
+        tr.appendChild(createPriceCell(item.price))
+        return tr
+    }
+
+    const generateItemId = () => {
+        return !!items.length ? items[items.length - 1].id + 1 : 0
+    }
+
+
+    const createItem = (name, price) => ({
+        id: generateItemId(),
+        name,
+        price,
+    })
+
+    const resetInputValues = () => {
+        nameInput.value = ''
+        priceInput.value = ''
+    }
+
+    const validatePriceInputValue = (price) => {
+        if (Number.isNaN(price)) {
+            priceInput.value = ''
+            disableAddButton()
+            throw new Error('Price contained illegal symbols')
+        }
+        return false
+    }
+
+    const addInputsHandlers = () => {
+        nameInput.addEventListener('input', disableAddButtonIfInputsEmptyHandler)
+        priceInput.addEventListener('input', disableAddButtonIfInputsEmptyHandler)
+    }
+
+    const addAddNewItemHandler = () => {
+        addButton.addEventListener('click', () => {
+            const price = Number.parseInt(priceInput.value);
+
+            validatePriceInputValue(price)
+
+            const item = createItem(nameInput.value, price);
+            items.push(item);
+            const tr = createTableRow(item);
+            itemsTableBody.appendChild(tr)
+            resetInputValues()
+            disableAddButton()
+            if (items.length) {
+                enableCalculateButton()
+            }
+        })
+    }
+
+    const addCalculateTotalPriceHandler = () => {
+        calculateButton.addEventListener('click', () => {
+            totalPriceElement.textContent = items.reduce((accumulator, next) => accumulator + next.price, 0);
+        })
+    }
+
+    const fixExponentInNumberInput = () => {
+        priceInput.addEventListener('keydown', (event) => {
+            if (event.key === 'e') {
+                event.preventDefault()
+            }
+        })
+    }
+
+    (onInit = () => {
+        fixExponentInNumberInput()
+        disableAddButton()
+        disableCalculateButton()
+        addInputsHandlers()
+        addAddNewItemHandler()
+        addCalculateTotalPriceHandler()
+    })()
+</script>
+</html>
