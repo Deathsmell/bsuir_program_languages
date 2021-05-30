@@ -240,7 +240,7 @@ class Carousel {
     }
 
     _checkArrowsVisibility() {
-        if (!this.options.infinite) {
+        if (!this.options.infinite && !this.options.disable) {
             this.buttonLeft.style.display = this._isFirstSlider ? 'none' : null;
             this.buttonRight.style.display = this._isLastSlider ? 'none' : null;
         }
@@ -265,6 +265,9 @@ class Carousel {
 
     _moveSlidersOn(sideMotion) {
         return () => {
+            if (this.ANIMATION_QUEUE.length > 5) {
+                return;
+            }
             if (this.isMotionAnimationContinuous) {
                 this.ANIMATION_QUEUE.push(this._moveSlide(sideMotion));
             } else {
@@ -431,7 +434,8 @@ class Carousel {
             try {
                await moveSlide();
             } catch (e) {
-                this._checkQueue()
+                this.ANIMATION_QUEUE = [];
+                this.isMotionAnimationContinuous = false;
             }
         } else {
             this.isMotionAnimationContinuous = false;

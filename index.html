@@ -257,17 +257,9 @@
 <footer class="main-footer">
     <div class="information-container office-information-container">
         <div class="office-information">
-            Наш официальный адрес:
-            г. Минск, ул. Ленина, 4
         </div>
-        <div class="office-information">
-            УНП
-            00987465398548
-        </div>
-        <div class="office-information">
-            БИК
-            83478B79DF78
-        </div>
+        <div class="office-information"></div>
+        <div class="office-information"></div>
     </div>
     <div class="information-container contact-information-container">
         <div class="contact-information">
@@ -322,9 +314,18 @@
 <script src="static/js/review.js"></script>
 <script src="static/js/call-form.js"></script>
 <script>
+    let information = document.getElementsByClassName('office-information');
+    [
+        'Наш официальный адрес:\nг. Минск, ул. Ленина, 4',
+        'УНП\n00987465398548',
+        'БИК\n83478B79DF78',
+    ].forEach((value, index) => {
+        information.item(index).textContent = value;
+    });
+
     new ContactForm();
 
-    const mainCarousel = new Carousel('carousel-container-id', {
+    new Carousel('carousel-container-id', {
         infinite: true,
         showDots: true,
     });
@@ -335,8 +336,8 @@
     });
 
     const checkViewport = () => window.innerWidth <= 770
-            ? reviewsCarousel.enable()
-            : reviewsCarousel.disable();
+        ? reviewsCarousel.enable()
+        : reviewsCarousel.disable();
 
     checkViewport()
     window.addEventListener('resize', checkViewport)

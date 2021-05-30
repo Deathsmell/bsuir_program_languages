@@ -1,3 +1,9 @@
+class CommonUtils {
+    static upperFirstSign(value) {
+        return `${value[0].toUpperCase()}${value.substr(1, value.length)}`;
+    }
+}
+
 class InputUtils {
     static INVALID_INPUT_CLASS = 'input-invalid';
     static MAX_VALUE_LENGTH = 64;
@@ -39,6 +45,11 @@ class Observer {
         this._subscribes.push(handler);
     }
 
+    set value(value) {
+        this._value = value;
+        this._updateSubscribes();
+    }
+
     setValue(value) {
         this._value = value;
         this._updateSubscribes();
@@ -52,6 +63,7 @@ class Observer {
 class BasicReactiveInput {
     observer;
     _input;
+    _isValid = true;
 
     constructor(element) {
         this.observer = new Observer();
@@ -60,6 +72,19 @@ class BasicReactiveInput {
 
     get value() {
         throw new Error('Getter \'reactiveValue\' must be implemented !');
+    }
+
+    get isValid() {
+        return this._isValid;
+    }
+
+    set isValid(value) {
+        if (value) {
+            InputUtils.removeInvalidClass(this._input)
+        } else {
+            InputUtils.addInvalidClass(this._input)
+        }
+        this._isValid = value;
     }
 
     initialInput(element) {
@@ -134,10 +159,6 @@ class NumberInput extends BasicReactiveInput {
         return this.number[this.numberLength - 1] === NumberInput.DASH_SIGN;
     }
 
-    get numberWithoutLastSign() {
-        return this.number.substr(0, this.numberLength - 1);
-    }
-
     get isDashIndex() {
         return this.numberLength === NumberInput.FIRST_DASH_INDEX - 1
             || this.numberLength === NumberInput.SECOND_DASH_INDEX - 1
@@ -145,23 +166,37 @@ class NumberInput extends BasicReactiveInput {
 
     initMainNumberPrettier() {
         this.numberInput.addEventListener('input', (event) => {
-            if (this.validateNewNumberValue(event)) {
+            if (!this.isNumber(event) || this.validateNewNumberValue(event)) {
                 this.returnPreviousValue(event);
             }
             if (!this.isBackspace(event) && this.isDashIndex) {
                 event.target.value = this.number + NumberInput.DASH_SIGN;
             }
         })
+        this.prefixInput.addEventListener('input', (event) => {
+            if (!this.isNumber(event)) {
+                this.returnPreviousValue(event);
+            }
+        })
     }
 
     returnPreviousValue(event) {
-        return event.target.value = this.numberWithoutLastSign;
+        return event.target.value = this.valueWithoutLastSign(event);
     }
 
     validateNewNumberValue(event) {
         return !this.isBackspace(event)
             ? this.isMaxNumberLength
             : this.isLastCharacterDash;
+    }
+
+    valueWithoutLastSign(event) {
+        return event.target.value.substr(0, this.numberLength - 1);
+    }
+
+    isNumber(event) {
+        const reg = /\d/
+        return reg.test(event.data)
     }
 
     isBackspace(event) {
@@ -228,11 +263,7 @@ class EmailInput extends BasicReactiveInput {
 
     initEmailPrettier() {
         this._input.addEventListener('change', (element) => {
-            if (this.isValidEmail(element)) {
-                InputUtils.removeInvalidClass(element);
-            } else {
-                InputUtils.addInvalidClass(element);
-            }
+                this.isValid = this.isValidEmail(element);
         });
     }
 
@@ -278,6 +309,12 @@ class ContactForm {
         return !Object.values(this.formValue).some((value) => !value);
     }
 
+    get emptyFormField() {
+        return Object.entries(this.formValue)
+            .filter(([_, value]) => !value)
+            .map(([key]) => key);
+    }
+
     constructor() {
         const nameInputs = new NameInputs().inputs;
         Object.entries(nameInputs).forEach(([variable, element]) => {
@@ -292,9 +329,12 @@ class ContactForm {
         this.callButtonInput = document.getElementById('main-call-button-id');
         this.callButtonInput.addEventListener('click', () => {
             if (this.isFullForm) {
-                console.log(this.formValue);
+                window.alert(this.formValue);
             } else {
-                console.log('Error')
+                const message = this.emptyFormField
+                    .map((key) => `${CommonUtils.upperFirstSign(key)} must not be empty!`)
+                    .join('\n');
+                window.alert(message);
             }
         })
     }
